@@ -12,8 +12,11 @@ class Tree {
   }
 }
 
+enum Position { Center, Top, Right, Left, Bottom }
+
+// Decorator
 class Decorator {
-  String position;
+  Position position;
   String color;
 
   Decorator({
@@ -27,41 +30,66 @@ class Decorator {
   }
 }
 
+// Class window
+class Window extends Decorator {
+  Window({required super.position, required super.color});
+}
+
+// Class Door
+class Door extends Decorator {
+  Door({required super.position, required super.color});
+}
+
+// Class chimeny
+class chimeny extends Decorator {
+  chimeny({required super.position, required super.color});
+}
+
+//
+class Roof extends Decorator {
+  Roof({required super.position, required super.color});
+}
+
 // Class House
 class House {
-  Decorator window;
-  Decorator roof;
-  Decorator door;
-  Decorator chimney;
-  String address;
-  List<Tree> trees = []; // by default empty
-
-  House(
-      {required this.address,
-      required this.roof,
-      required this.door,
-      required this.chimney,
-      required this.window});
+  List<Tree> trees = [];
+  List<Window> windows = [];
+  List<Roof> roof = [];
+  List<chimeny> chimney = [];
+  List<Door> door = [];
 
   void addTree(Tree newTree) {
     this.trees.add(newTree);
   }
 
+  void addWindow(Window window) {
+    this.windows.add(window);
+  }
 
-@override
-String toString(){
-  return 'House(address: $address,\n roof: $roof,\n door: $door,\n chimney: $chimney,\n window: $window,)';
-}
+  void addChinmey(chimeny chimeny) {
+    this.chimney.add(chimeny);
+  }
 
+  void addRoof(Roof roof) {
+    this.roof.add(roof);
+  }
+
+  void addDoor(Door door) {
+    this.door.add(door);
+  }
+
+  @override
+  String toString() {
+    return 'House(roof: $roof,\n door: $door,\n chimney: $chimney,\n window: $windows,)';
+  }
 }
 
 void main() {
-  House newHouse = House(
-    address: "New York City",
-    roof: Decorator(position: "Center", color: "Green"),
-    door: Decorator(position: "bottomCenter", color: "Green"),
-    chimney: Decorator(position: "topLeft", color: "Yellow"),
-    window: Decorator(position: "topRight", color: "Red"),
-  );
+  House newHouse = House();
+  newHouse.addWindow(Window(position: Position.Right, color: "Red"));
+  newHouse.addWindow(Window(position: Position.Left, color: "Green"));
+  newHouse.addRoof(Roof(position: Position.Top, color: "Blue"));
+  newHouse.addDoor(Door(position: Position.Center, color: "Black"));
+  newHouse.addChinmey(chimeny(position: Position.Top, color: "Green"));
   print(newHouse);
 }
