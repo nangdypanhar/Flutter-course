@@ -104,7 +104,7 @@ final List<Weather> weatherList = [
   Weather(day: 'Tuesday', condition: WeatherCondition.rainy, temperature: 18),
   Weather(day: 'Wednesday', condition: WeatherCondition.snowy, temperature: -2),
   Weather(day: 'Thursday', condition: WeatherCondition.cloudy, temperature: 20),
-  Weather(day: 'Friday', condition: WeatherCondition.windy, temperature: 30),
+  Weather(day: 'Friday', condition: WeatherCondition.sunny, temperature: 30),
 ];
 
 void main() {
