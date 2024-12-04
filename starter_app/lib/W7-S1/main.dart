@@ -11,12 +11,9 @@ void main() {
       title: "Which color is the best?",
       possibleAnswers: ["blue", "red", 'green'],
       goodAnswer: 'red');
-  Question q3 = const Question(
-      title: "Which color is the rapper?",
-      possibleAnswers: ["vd", "gd", 'dp'],
-      goodAnswer: 'red');
 
-  List<Question> myQuestions = [q1, q2, q3];
+
+  List<Question> myQuestions = [q1, q2];
   Quiz myQuiz = Quiz(title: "Crazy Quizz", questions: myQuestions);
 
   runApp(QuizApp(myQuiz));

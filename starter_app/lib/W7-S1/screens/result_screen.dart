@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:starter_app/W7-S1/model/submission.dart';
 import 'package:starter_app/W7-S1/quiz_app.dart';
-import 'package:starter_app/W7-S1/widgets/resultcard.dart';
+import 'package:starter_app/W7-S1/widgets/result_card.dart';
 
 class ResultScreen extends StatelessWidget {
   final Function navigate;

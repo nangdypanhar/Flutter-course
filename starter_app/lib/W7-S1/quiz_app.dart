@@ -9,15 +9,9 @@ import 'model/submission.dart';
 Color appColor = Colors.blue[500]!;
 
 enum Screens {
-  resultScreen("result"),
-  welcomeScreen("welcome"),
-  questionScreen("question");
-
-  final String label;
-
-  const Screens(this.label);
-  @override
-  String toString() => label;
+  resultScreen,
+  welcomeScreen,
+  questionScreen;
 }
 
 class QuizApp extends StatefulWidget {
