@@ -2,7 +2,6 @@ import 'package:delightful_toast/delight_toast.dart';
 import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:expense_tracker/Models/expense.dart';
 import 'package:expense_tracker/database/expense_database.dart';
-import 'package:expense_tracker/screens/chart_screen.dart';
 import 'package:expense_tracker/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -17,14 +16,24 @@ class ExpenseList extends StatelessWidget {
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: const Text('Delete Expense'),
-          content: const Text('Are you sure you want to delete this expense?'),
+          title: Text(
+            'Delete Expense',
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+          ),
+          content: Text(
+            'Are you sure you want to delete this expense?',
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+          ),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(dialogContext).pop();
               },
-              child: const Text('Cancel'),
+              child: Text(
+                'Cancel',
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -44,7 +53,10 @@ class ExpenseList extends StatelessWidget {
                   snackbarDuration: Durations.extralong4,
                 ).show(dialogContext);
               },
-              child: const Text('Delete'),
+              child: const Text(
+                'Delete',
+                style: TextStyle(color: Colors.red),
+              ),
             ),
           ],
         );
@@ -74,12 +86,24 @@ class ExpenseList extends StatelessWidget {
             ),
             Text(
               expense.title,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.onSurface),
             ),
             const SizedBox(height: 10),
-            Text("Amount: \$${expense.amount}"),
-            Text("Category: ${expense.category.name}"),
-            Text(" Date :  $dateFormatted"),
+            Text(
+              "Amount: \$${expense.amount}",
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+            ),
+            Text(
+              "Category: ${expense.category.name}",
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+            ),
+            Text(
+              " Date :  $dateFormatted",
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+            ),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -144,44 +168,15 @@ class ExpenseList extends StatelessWidget {
 
       return Padding(
         padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Expense",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (ctx) => const ChartScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text("View all"),
-                )
-              ],
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: expenseList.length,
-                itemBuilder: (context, index) {
-                  var expenseItem = expenseList[index];
-                  return ExpenseTile(
-                    expense: expenseItem,
-                    onTap: () => _showBottomSheet(context, expenseItem),
-                  );
-                },
-              ),
-            ),
-          ],
+        child: ListView.builder(
+          itemCount: expenseList.length,
+          itemBuilder: (context, index) {
+            var expenseItem = expenseList[index];
+            return ExpenseTile(
+              expense: expenseItem,
+              onTap: () => _showBottomSheet(context, expenseItem),
+            );
+          },
         ),
       );
     });

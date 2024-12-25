@@ -14,7 +14,7 @@ class Expense {
   late double amount;
   late DateTime date;
 
-    @enumerated
+  @enumerated
   late Category category;
 
    Expense({

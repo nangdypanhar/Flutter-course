@@ -134,10 +134,10 @@ class _FormScreenState extends State<FormScreen> {
             children: [
               Text(
                 widget.mode == Mode.create ? "New Expense" : "Edit Expense",
-                style: const TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.onSurface),
               ),
               const SizedBox(
                 height: 20,
@@ -145,7 +145,6 @@ class _FormScreenState extends State<FormScreen> {
               Container(
                 width: 250,
                 decoration: BoxDecoration(
-                  color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -159,17 +158,21 @@ class _FormScreenState extends State<FormScreen> {
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     textAlign: TextAlign.center,
                     validator: validateQuantity,
-                    decoration: const InputDecoration(
-                      prefix: Text("\$ "),
-                      fillColor: Colors.white,
+                    decoration: InputDecoration(
+                      prefix: const Text(
+                        "\$ ",
+                      ),
+                      fillColor: Theme.of(context).colorScheme.surface,
                       filled: true,
-                      hintText: "0",
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(20),
                         ),
                         borderSide: BorderSide.none,
                       ),
+                    ),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                     onChanged: (value) {
                       amount = double.tryParse(value) ?? 0;
@@ -180,7 +183,7 @@ class _FormScreenState extends State<FormScreen> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -213,7 +216,7 @@ class _FormScreenState extends State<FormScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.3),
@@ -235,7 +238,12 @@ class _FormScreenState extends State<FormScreen> {
                               backgroundImage: AssetImage(category.image),
                             ),
                             const SizedBox(width: 20),
-                            Text(category.name),
+                            Text(
+                              category.name,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
+                            ),
                           ],
                         ),
                       );
@@ -253,7 +261,7 @@ class _FormScreenState extends State<FormScreen> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -305,7 +313,7 @@ class _FormScreenState extends State<FormScreen> {
               Container(
                 width: 200,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -328,6 +336,9 @@ class _FormScreenState extends State<FormScreen> {
                   },
                   child: Text(
                     widget.mode == Mode.create ? "Save" : "Update",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ),
               )

@@ -2,27 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
- 
-
   static ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey.shade100,
     brightness: Brightness.light,
-    primaryColor: Colors.green,
     colorScheme: const ColorScheme.light(
-      primary: Colors.green,
-      secondary: Colors.green,
+      primary: Color(0xFF014C63),
+      secondary: Color(0xFF014C63), 
+      surface: Colors.white, 
+      onPrimary: Colors.white,
+      onSecondary: Colors.green, 
+      onSurface: Colors.black,
     ),
+    scaffoldBackgroundColor: Colors.grey.shade100,
     textTheme: GoogleFonts.poppinsTextTheme(),
   );
 
   static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.black,
     brightness: Brightness.dark,
-    primaryColor: Colors.blueGrey,
-    colorScheme: const ColorScheme.dark(
-      primary: Colors.blueGrey,
-      secondary: Colors.teal,
+    colorScheme: ColorScheme.dark(
+      primary: Colors.blueGrey, 
+      secondary: Colors.blueGrey,
+      surface: Colors.grey.shade900, 
+      onPrimary: Colors.white,
+      onSecondary: Colors.white, 
+      onSurface: Colors.white, 
     ),
+    scaffoldBackgroundColor: Colors.black12,
     textTheme: GoogleFonts.poppinsTextTheme(),
   );
 }

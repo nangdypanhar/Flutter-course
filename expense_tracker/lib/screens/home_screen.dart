@@ -1,6 +1,5 @@
 import 'package:expense_tracker/screens/chart_screen.dart';
 import 'package:expense_tracker/screens/form_screen.dart';
-import 'package:expense_tracker/utils/image_path.dart';
 import 'package:expense_tracker/widgets/exepnse_dashboard.dart';
 import 'package:expense_tracker/widgets/expense_list.dart';
 import 'package:expense_tracker/widgets/header.dart';
@@ -17,53 +16,25 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
 
-  final List<Widget> _pages = [
-    const SafeArea(
-      child: Column(
-        children: [
-          Header(),
-          ExpenseDashboard(),
-          Expanded(
-            child: ExpenseList(),
-          ),
-        ],
-      ),
-    ),
-    const ChartScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _pages = [
+      SafeArea(
+        child: Column(
+          children: [
+            const Header(),
+            const ExpenseDashboard(),
+            getViewAll(context),
+            const Expanded(
+              child: ExpenseList(),
+            ),
+          ],
+        ),
+      ),
+      const ChartScreen(),
+    ];
+
     return Scaffold(
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   title: const Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Text(
-      //         "Welcome Back",
-      //         style: TextStyle(fontSize: 15),
-      //       ),
-      //       Text(
-      //         "Nangdy Panhar",
-      //         style: TextStyle(fontSize: 20),
-      //       ),
-      //     ],
-      //   ),
-      //   actions: [
-      //     const Icon(
-      //       Icons.sunny,
-      //       color: Colors.grey,
-      //     ),
-      //     const SizedBox(
-      //       width: 20,
-      //     ),
-      //     CircleAvatar(
-      //       radius: 25,
-      //       backgroundImage: AssetImage(Avatar.man.path),
-      //     ),
-      //   ],
-      // ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(40),
@@ -85,13 +56,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 selectedIndex = index;
               });
             },
-            destinations: const [
+            destinations: [
               NavigationDestination(
-                icon: Icon(Icons.home),
+                icon: Icon(
+                  Icons.home,
+                  color: selectedIndex == 0 ? Colors.grey[200]! : Colors.black,
+                ),
                 label: "Home",
               ),
               NavigationDestination(
-                icon: Icon(Icons.bar_chart),
+                icon: Icon(
+                  Icons.bar_chart,
+                  color: selectedIndex == 1 ? Colors.grey[200]! : Colors.black,
+                ),
                 label: "Charts",
               ),
             ],
@@ -99,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         onPressed: () {
           Navigator.push(
             context,
@@ -111,11 +88,49 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
         shape: const CircleBorder(),
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
       body: _pages[selectedIndex],
+    );
+  }
+
+  Widget getViewAll(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Expense",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (ctx) => const ChartScreen(),
+                ),
+              );
+            },
+            child: Text(
+              "View all",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

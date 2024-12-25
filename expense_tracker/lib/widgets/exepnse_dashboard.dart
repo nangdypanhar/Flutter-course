@@ -56,7 +56,12 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                         items: Period.values.map((period) {
                           return DropdownMenuItem<Period>(
                             value: period,
-                            child: Text(period.name),
+                            child: Text(
+                              period.name,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
+                            ),
                           );
                         }).toList(),
                         onChanged: (value) {
@@ -66,9 +71,12 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                             });
                           }
                         },
-                        hint: const Text('Select a Category'),
                       ),
-                      Text("\$ $expense")
+                      Text(
+                        "\$ $expense",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface),
+                      )
                     ],
                   ),
                   const SizedBox(height: 15),
